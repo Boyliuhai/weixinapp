@@ -1,0 +1,397 @@
+{
+"page":
+[
+   {
+	"path": "/home",
+    "name": "首页",
+    "isview":false,
+    "child":[]
+    },
+   {
+        "name":"电厂项目管理",
+        "isview":true,
+        "child":[
+            {
+                "path":"/publish",
+                "isview":true,
+                "name":"发布项目"
+            },
+            {
+                "path":"/selectproject",
+                "isview":true,
+                "name":"查看项目"
+            },
+             {
+                "path":"/editproject",
+                "isview":true,
+                "name":"修改项目"
+           },
+            {
+                "path":"/reviewproject",
+                "isview":true,
+                "name":"待审核项目"
+           },
+        ]
+   },
+    {
+        "name":"外委公司管理",
+        "isview":true,
+        "child":[
+            {
+                "path":"/companyinfo",
+                "isview":true,
+                "name":"承包商入厂"
+            },
+            {
+                "path":"/incompany",
+                "isview":true,
+                "name":"添加人员"
+           },
+           {
+            "path":"/crews",
+            "isview":true,
+            "name":"人员入厂表"
+       }
+        ]
+    },
+    {
+    "name": "作业许可管理",
+    "isview":true,
+    "path":"",
+       "child":[
+                {
+                "path":"/jobapplication",
+                "isview":true,
+                "name":"开工许可申请"
+           },
+            {
+                "path":"/jobzhanbanhui",
+                "isview":true,
+                "name":"站班会管理"
+           },
+           {
+                "path":"/jobzhanbanhuijuti",
+                "isview":true,
+                "name":"站班会具体"
+           },
+            {
+                "path":"/jobzhanbanhuichakan",
+                "isview":true,
+                "name":"站班会查看"
+           },
+           {
+                "path":"/dianyuanshenqing",
+                "isview":false,
+                "name":"申请"
+           },  
+            {
+                "path":"/dianyuananzhuang",
+                "isview":false,
+                "name":"安装"
+           },
+            {
+                "path":"/dianyuanshenpi",
+                "isview":false,
+                "name":"审批"
+           },
+            {
+                "path":"/dianyuanyanshou",
+                "isview":false,
+                "name":"验收"
+           },
+           {
+                "path":"/dianyuanyanqi",
+                "isview":false,
+                "name":"延期"
+           },
+              {
+                "path":"/dianyuanchaichu",
+                "isview":false,
+                "name":"拆除"
+           },
+            {
+                "path":"/dianyuanchakan",
+                "isview":false,
+                "name":"查看"
+           },
+            {
+                "path":"/jiaoshoujiashenqing",
+                "isview":false,
+                "name":"脚申请"
+           },
+            {
+                "path":"/jiaoshoujiashenpi",
+                "isview":false,
+                "name":"脚审批"
+           },
+            {
+                "path":"/jiaoshoujiadashe",
+                "isview":false,
+                "name":"脚搭设"
+           },
+            {
+                "path":"/jiaoshoujiayanshou",
+                "isview":false,
+                "name":"脚验收"
+           },
+            {
+                "path":"/jiaoshoujiachaichu",
+                "isview":false,
+                "name":"脚拆除"
+           },
+            {
+                "path":"/jiaoshoujiayanqi",
+                "isview":false,
+                "name":"脚延期"
+           },
+            {
+                "path":"/jiaoshoujiachakan",
+                "isview":false,
+                "name":"脚查看"
+           }, 
+            {
+                "path":"/zhandaoshenqing",
+                "isview":false,
+                "name":"占道申请"
+           }, 
+            {
+                "path":"/zhandaoshenpi",
+                "isview":false,
+                "name":"占道审批"
+           }, 
+            {
+                "path":"/zhandaoshenpi1",
+                "isview":false,
+                "name":"占道再次审批"
+           }, 
+            {
+                "path":"/zhandaoshiyongqingkuang",
+                "isview":false,
+                "name":"占道占用情况"
+           }, 
+            {
+                "path":"/zhandaohuifu",
+                "isview":false,
+                "name":"占道恢复"
+           }, 
+            {
+                "path":"/zhandaoyanqi",
+                "isview":false,
+                "name":"占道延期"
+           }, 
+           {
+                "path":"/zhandaochakan",
+                "isview":false,
+                "name":"占道查看"
+           }, 
+       ]
+    },
+    {
+    "name": "质量控制",
+    "isview":true,
+    "path":"",
+       "child":[
+		    {
+		        "path":"/showquality",
+		        "isview":true,
+		        "name":"查看质量控制"
+		   },
+		   {
+		        "path":"/qualityinfo",
+		        "isview":false,
+		        "name":"查看质量计划"
+		   },
+		     {
+		        "path":"/qualityapply",
+		        "isview":false,
+		        "name":"验收申请"
+		   },
+		     {
+		        "path":"/dealqualityapply",
+		        "isview":false,
+		        "name":"处理验收申请"
+		   },
+		   {
+		        "path":"/dealqualitywancheng",
+		        "isview":false,
+		        "name":"验收成功"
+		   },
+		   {
+		        "path":"/dealqualitylost",
+		        "isview":false,
+		        "name":"验收失败"
+		   },
+       ]
+    },
+    {
+        "name": "工器具管理",
+        "isview":true,
+        "child": [
+             {
+                "path": "/publishequipment1",
+                "name": "工器具发布",
+                "isview":true,
+                "permission": ["edit"]
+            },
+             {
+                "path": "/checkequipment",
+                "name": "查看工器具",
+                "isview":true,
+                "permission": ["edit"]
+            },
+            {
+                "path": "/incomequipment",
+                "name": "设备材料进厂",
+                "isview":true,
+                "permission": ["edit"]
+            },
+             {
+                "path": "/outcomequipment",
+                "name": "设备材料查看",
+                "isview":false,
+                "permission": ["edit"]
+            },
+            
+        ]
+    },
+     {
+        "name": "违章管理",
+        "isview":true,
+        "child": [
+            {
+                "path": "/checkbreakrule",
+                "name": "违章管理查看",
+                "isview":true,
+                "permission": ["edit"]
+            },
+           {
+                "path": "/specificbreakrule",
+                "name": "违章管理具体",
+                "isview":true,
+                "permission": ["edit"]
+            },
+            {
+                "path": "/nobreakrule",
+                "name": "违章申诉",
+                "isview":true,
+                "permission": ["edit"]
+            },
+            {
+                "path": "/dealbreakrule",
+                "name": "审批",
+                "isview":true,
+                "permission": ["edit"]
+            },
+            {
+                "path": "/dealbreakrule1",
+                "name": "再次审批",
+                "isview":true,
+                "permission": ["edit"]
+            },
+            {
+                "path": "/dealbreakrule2",
+                "name": "财务审批",
+                "isview":true,
+                "permission": ["edit"]
+            },
+             {
+                "path": "/report",
+                "name": "举报",
+                "isview":true,
+                "permission": ["edit"]
+            },
+        ]
+    },
+    {
+        "path": "",
+        "name": "考勤管理",
+        "isview":true,
+        "child":[]
+    },
+    {
+        "name": "工作票管理",
+        "isview":true,
+        "child":[
+        	{
+                "path": "/workticketcheck",
+                "name": "工作票查看",
+                "isview":true,
+                "permission": ["edit"]
+            },
+        	{
+                "path": "/rekong",
+                "name": "热控",
+                "isview":true,
+                "permission": ["edit"]
+            },
+             {
+                "path": "/dianqi1",
+                "name": "电气1",
+                "isview":true,
+                "permission": ["edit"]
+            },
+            {
+                "path": "/dianqi2",
+                "name": "电气2",
+                "isview":true,
+                "permission": ["edit"]
+            },
+            {
+                "path": "/reli",
+                "name": "热力",
+                "isview":true,
+                "permission": ["edit"]
+            },
+            {
+                "path": "/donghuo1",
+                "name": "动火1",
+                "isview":true,
+                "permission": ["edit"]
+            },
+            {
+                "path": "/donghuo2",
+                "name": "动火2",
+                "isview":true,
+                "permission": ["edit"]
+            },
+      ]
+    },
+  	 {
+  		 "path": "",
+        "name": "区域管理",
+        "isview":true,
+        "child":
+        [
+            {
+                "path":"/partmange1",
+                "isview":true,
+                "name":"区域管理1"
+           },
+           {
+               "path":"/partmange2",
+               "isview":true,
+               "name":"区域管理2"
+           }
+           
+        ]
+    },
+    {
+        "name": "组织机构管理",
+        "isview":true,
+        "child":
+        [
+            {
+                "path":"/addorg",
+                "isview":true,
+                "name":"组织结构"
+           },
+           {
+               "path":"/message",
+               "isview":true,
+               "name":"消息"
+           }
+           
+        ]
+    }
+]
+}

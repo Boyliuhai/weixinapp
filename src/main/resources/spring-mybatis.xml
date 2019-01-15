@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+                        http://www.springframework.org/schema/context  
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd  
+                        http://www.springframework.org/schema/mvc  
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                 		http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd ">
+	
+	<!-- mybaits和spring整合配置文件 
+	需要配置的内容包括：数据源、SqlSessionFactory、mapper扫描器
+	-->
+	<!-- 1、配置数据源 -->
+	<!-- 首先加载jdbc.properties文件中的内容 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!-- 再配置连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driver}"/>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<!-- 连接池中保留的最大连接数。默认为15 -->
+		<property name="maxPoolSize" value="${c3p0.pool.maxPoolSize}"/>
+		<!-- 连接池中保留的最小连接数。默认为15 -->
+		<property name="minPoolSize" value="${c3p0.pool.minPoolSize}" />
+		<!-- 初始化时创建的连接数，应在minPoolSize与maxPoolSize之间取值。默认为3 -->
+		<property name="initialPoolSize" value="${c3p0.pool.initialPoolSize}"/>
+		<!-- 定义在从数据库获取新连接失败后重复尝试获取的次数，默认为30 -->
+		<property name="acquireIncrement" value="${c3p0.pool.acquireIncrement}"/>
+	</bean>
+	
+	<!-- 2、配置SqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 数据库连接池 -->
+        <property name="dataSource" ref="dataSource" />
+        <!-- 加载mybatis的全局配置文件 -->
+        <property name="configLocation" value="classpath:sqlMapConfig.xml"></property>
+    </bean>
+    
+    <!-- 3、mapper扫描器 -->
+   	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+   		<!-- 扫描的包路径，如果需要扫描多个，中间使用半角逗号隔开 -->
+        <property name="basePackage" value="com.cug.mapper" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+    
+    <!-- 4、事务控制 -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <!-- 使用注解事务 添加@Transactional -->
+    <tx:annotation-driven transaction-manager="txManager"/>
+    
+    <!-- 5、通知 -->
+   	<tx:advice id="txAdivce" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="insert*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="save*" propagation="REQUIRED"/>
+			
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+			<tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+			<tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 6、aop，调用通知 -->
+   	<aop:config>
+		<aop:advisor advice-ref="txAdivce" pointcut="execution(* com.cug.service.impl.*.*(..))"/>
+	</aop:config>
+	
+	<!-- 7、添加service -->
+
+	<bean id="UploadService" class="com.cug.service.impl.UploadServiceImpl"/>
+	<bean id="GetProjectService" class="com.cug.service.impl.GetProjectServiceImpl"/>
+	<bean id="IdentityService" class="com.cug.service.impl.IdentityServiceImpl"/>
+	<bean id="zongheService" class="com.cug.service.impl.zongheServiceImpl"/>
+	<bean id="IUserService" class="com.cug.service.impl.IUserServiceImpl"/>
+	<bean id="SelectProjectService" class="com.cug.service.impl.SelectProjectServiceImpl"/>
+</beans>

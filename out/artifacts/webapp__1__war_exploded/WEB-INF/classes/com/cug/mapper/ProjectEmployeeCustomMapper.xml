@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cug.mapper.ProjectEmployeeCustomMapper" >
+	
+	<!-- 批量插入数据 -->
+	<insert id="insertEmployees" parameterType="com.cug.po.Projectemployee" >
+		insert into projectEmployee(contractId,idCard,projectName,companyName,name,
+		age,address,phone,idCardFilePath,faceFilePath,examReportFilePath,specialWorkType,
+		specialWorkFilePath,post,insuranceFilePath,contractlabourFilePath)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(#{item.contractid},#{item.idcard},#{item.projectname},#{item.companyname},#{item.name},
+		#{item.age},#{item.address},#{item.phone},#{item.idcardfilepath},#{item.facefilepath},
+		#{item.examreportfilepath},#{item.specialworktype},#{item.specialworkfilepath},
+		#{item.post},#{item.insurancefilepath},#{item.contractlabourfilepath})
+		</foreach>
+	</insert>
+	
+	<!-- 按照身份证号查询 -->
+	<select id="selectByIdCard" parameterType="java.lang.String" resultMap="com.cug.mapper.ProjectemployeeMapper.BaseResultMap">
+		select * from projectEmployee where idCard = #{value}
+	</select>
+	
+	<!-- 按照合同编号查询 -->
+	<select id="selectByContractId" parameterType="java.lang.String" resultMap="com.cug.mapper.ProjectemployeeMapper.BaseResultMap">
+		select * from projectEmployee where contractId = #{value}
+	</select>
+	
+	<!-- 按照所属公司查询 -->
+	<select id="selectByCompanyName" parameterType="java.lang.String" resultMap="com.cug.mapper.ProjectemployeeMapper.BaseResultMap">
+		select * from projectEmployee where companyName = #{value}
+	</select>
+	
+	<!-- 按照项目名称查询 -->
+	<select id="selectByProjectName" parameterType="java.lang.String" resultMap="com.cug.mapper.ProjectemployeeMapper.BaseResultMap">
+		select * from projectEmployee where projectName = #{value}
+	</select>
+	
+	<!-- 根据身份证号删除 -->
+	<delete id="deleteByIdCard" parameterType="java.lang.String">
+		delete from projectEmployee where idCard = #{value}
+	</delete>
+	
+	<!-- 根据合同编号删除 -->
+	<delete id="deleteByContractId" parameterType="java.lang.String">
+		delete from projectEmployee where contractId = #{value}
+	</delete>
+	
+	<!-- 根据项目名称删除 -->
+	<delete id="deleteByProjectName" parameterType="java.lang.String">
+		delete from projectEmployee where projectName = #{value}
+	</delete>
+	
+	<!-- 根据公司名称删除 -->
+	<delete id="deleteByCompanyName" parameterType="java.lang.String">
+		delete from projectEmployee where companyName = #{value}
+	</delete>
+
+</mapper>

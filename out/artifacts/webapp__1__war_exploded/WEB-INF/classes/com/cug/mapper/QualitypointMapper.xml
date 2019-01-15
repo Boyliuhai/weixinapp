@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cug.mapper.QualitypointMapper" >
+  <resultMap id="BaseResultMap" type="com.cug.po.Qualitypoint" >
+    <id column="contractId" property="contractid" jdbcType="VARCHAR" />
+    <id column="point" property="point" jdbcType="VARCHAR" />
+    <result column="pointOrder" property="pointorder" jdbcType="INTEGER" />
+    <result column="part" property="part" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    contractId, point, pointOrder, part, type, state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cug.po.QualitypointExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from qualitypoint
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.cug.po.QualitypointKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from qualitypoint
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and point = #{point,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.cug.po.QualitypointKey" >
+    delete from qualitypoint
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and point = #{point,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cug.po.QualitypointExample" >
+    delete from qualitypoint
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cug.po.Qualitypoint" >
+    insert into qualitypoint (contractId, point, pointOrder, 
+      part, type, state)
+    values (#{contractid,jdbcType=VARCHAR}, #{point,jdbcType=VARCHAR}, #{pointorder,jdbcType=INTEGER}, 
+      #{part,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cug.po.Qualitypoint" >
+    insert into qualitypoint
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contractid != null" >
+        contractId,
+      </if>
+      <if test="point != null" >
+        point,
+      </if>
+      <if test="pointorder != null" >
+        pointOrder,
+      </if>
+      <if test="part != null" >
+        part,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contractid != null" >
+        #{contractid,jdbcType=VARCHAR},
+      </if>
+      <if test="point != null" >
+        #{point,jdbcType=VARCHAR},
+      </if>
+      <if test="pointorder != null" >
+        #{pointorder,jdbcType=INTEGER},
+      </if>
+      <if test="part != null" >
+        #{part,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cug.po.QualitypointExample" resultType="java.lang.Integer" >
+    select count(*) from qualitypoint
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update qualitypoint
+    <set >
+      <if test="record.contractid != null" >
+        contractId = #{record.contractid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.point != null" >
+        point = #{record.point,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pointorder != null" >
+        pointOrder = #{record.pointorder,jdbcType=INTEGER},
+      </if>
+      <if test="record.part != null" >
+        part = #{record.part,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update qualitypoint
+    set contractId = #{record.contractid,jdbcType=VARCHAR},
+      point = #{record.point,jdbcType=VARCHAR},
+      pointOrder = #{record.pointorder,jdbcType=INTEGER},
+      part = #{record.part,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cug.po.Qualitypoint" >
+    update qualitypoint
+    <set >
+      <if test="pointorder != null" >
+        pointOrder = #{pointorder,jdbcType=INTEGER},
+      </if>
+      <if test="part != null" >
+        part = #{part,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and point = #{point,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cug.po.Qualitypoint" >
+    update qualitypoint
+    set pointOrder = #{pointorder,jdbcType=INTEGER},
+      part = #{part,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR}
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and point = #{point,jdbcType=VARCHAR}
+  </update>
+</mapper>

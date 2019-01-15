@@ -1,0 +1,43 @@
+{
+"page":
+[
+   {
+	"path": "/home",
+    "name": "首页",
+    "isview":false,
+    "child":[]
+    },
+   {
+        "name":"电厂项目管理",
+        "isview":true,
+        "child":[
+            {
+                "path":"/selectproject",
+                "isview":true,
+                "name":"查看项目"
+            }
+        ]
+   },
+    {
+        "name":"外委公司信息",
+        "isview":true,
+        "child":[
+            {
+                "path":"/companyinfo",
+                "isview":true,
+                "name":"承包商入厂"
+            },
+            {
+                "path":"/incompany",
+                "isview":true,
+                "name":"添加人员"
+           },
+           {
+            "path":"/crews",
+            "isview":true,
+            "name":"人员入厂表"
+       }
+        ]
+    }
+]
+}

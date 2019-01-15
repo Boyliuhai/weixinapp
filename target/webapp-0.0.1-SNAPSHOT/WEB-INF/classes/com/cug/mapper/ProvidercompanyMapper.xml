@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cug.mapper.ProvidercompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.cug.po.Providercompany" >
+    <id column="companyName" property="companyname" jdbcType="VARCHAR" />
+    <result column="businessLicenceFilePath" property="businesslicencefilepath" jdbcType="VARCHAR" />
+    <result column="certificateFilePath" property="certificatefilepath" jdbcType="VARCHAR" />
+    <result column="ESPLFilePath" property="esplfilepath" jdbcType="VARCHAR" />
+    <result column="LOAFilePath" property="loafilepath" jdbcType="VARCHAR" />
+    <result column="securityAgreementFilePath" property="securityagreementfilepath" jdbcType="VARCHAR" />
+    <result column="ThreePlan" property="threeplan" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    companyName, businessLicenceFilePath, certificateFilePath, ESPLFilePath, LOAFilePath, 
+    securityAgreementFilePath, ThreePlan
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cug.po.ProvidercompanyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from providercompany
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from providercompany
+    where companyName = #{companyname,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from providercompany
+    where companyName = #{companyname,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cug.po.ProvidercompanyExample" >
+    delete from providercompany
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cug.po.Providercompany" >
+    insert into providercompany (companyName, businessLicenceFilePath, 
+      certificateFilePath, ESPLFilePath, LOAFilePath, 
+      securityAgreementFilePath, ThreePlan)
+    values (#{companyname,jdbcType=VARCHAR}, #{businesslicencefilepath,jdbcType=VARCHAR}, 
+      #{certificatefilepath,jdbcType=VARCHAR}, #{esplfilepath,jdbcType=VARCHAR}, #{loafilepath,jdbcType=VARCHAR}, 
+      #{securityagreementfilepath,jdbcType=VARCHAR}, #{threeplan,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cug.po.Providercompany" >
+    insert into providercompany
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="companyname != null" >
+        companyName,
+      </if>
+      <if test="businesslicencefilepath != null" >
+        businessLicenceFilePath,
+      </if>
+      <if test="certificatefilepath != null" >
+        certificateFilePath,
+      </if>
+      <if test="esplfilepath != null" >
+        ESPLFilePath,
+      </if>
+      <if test="loafilepath != null" >
+        LOAFilePath,
+      </if>
+      <if test="securityagreementfilepath != null" >
+        securityAgreementFilePath,
+      </if>
+      <if test="threeplan != null" >
+        ThreePlan,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="businesslicencefilepath != null" >
+        #{businesslicencefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatefilepath != null" >
+        #{certificatefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="esplfilepath != null" >
+        #{esplfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="loafilepath != null" >
+        #{loafilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="securityagreementfilepath != null" >
+        #{securityagreementfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="threeplan != null" >
+        #{threeplan,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cug.po.ProvidercompanyExample" resultType="java.lang.Integer" >
+    select count(*) from providercompany
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update providercompany
+    <set >
+      <if test="record.companyname != null" >
+        companyName = #{record.companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businesslicencefilepath != null" >
+        businessLicenceFilePath = #{record.businesslicencefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certificatefilepath != null" >
+        certificateFilePath = #{record.certificatefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.esplfilepath != null" >
+        ESPLFilePath = #{record.esplfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loafilepath != null" >
+        LOAFilePath = #{record.loafilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityagreementfilepath != null" >
+        securityAgreementFilePath = #{record.securityagreementfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.threeplan != null" >
+        ThreePlan = #{record.threeplan,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update providercompany
+    set companyName = #{record.companyname,jdbcType=VARCHAR},
+      businessLicenceFilePath = #{record.businesslicencefilepath,jdbcType=VARCHAR},
+      certificateFilePath = #{record.certificatefilepath,jdbcType=VARCHAR},
+      ESPLFilePath = #{record.esplfilepath,jdbcType=VARCHAR},
+      LOAFilePath = #{record.loafilepath,jdbcType=VARCHAR},
+      securityAgreementFilePath = #{record.securityagreementfilepath,jdbcType=VARCHAR},
+      ThreePlan = #{record.threeplan,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cug.po.Providercompany" >
+    update providercompany
+    <set >
+      <if test="businesslicencefilepath != null" >
+        businessLicenceFilePath = #{businesslicencefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatefilepath != null" >
+        certificateFilePath = #{certificatefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="esplfilepath != null" >
+        ESPLFilePath = #{esplfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="loafilepath != null" >
+        LOAFilePath = #{loafilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="securityagreementfilepath != null" >
+        securityAgreementFilePath = #{securityagreementfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="threeplan != null" >
+        ThreePlan = #{threeplan,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where companyName = #{companyname,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cug.po.Providercompany" >
+    update providercompany
+    set businessLicenceFilePath = #{businesslicencefilepath,jdbcType=VARCHAR},
+      certificateFilePath = #{certificatefilepath,jdbcType=VARCHAR},
+      ESPLFilePath = #{esplfilepath,jdbcType=VARCHAR},
+      LOAFilePath = #{loafilepath,jdbcType=VARCHAR},
+      securityAgreementFilePath = #{securityagreementfilepath,jdbcType=VARCHAR},
+      ThreePlan = #{threeplan,jdbcType=VARCHAR}
+    where companyName = #{companyname,jdbcType=VARCHAR}
+  </update>
+</mapper>

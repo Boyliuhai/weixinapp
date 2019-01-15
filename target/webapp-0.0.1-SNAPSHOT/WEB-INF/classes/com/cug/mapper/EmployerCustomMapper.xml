@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cug.mapper.EmployerCustomMapper" >
+	
+	<!-- 批量插入数据 -->
+	<insert id="insertEmployers" parameterType="com.cug.po.Employer" >
+		insert into employer(companyName,idNumber,name,sex,
+		age,department,profession,post,phone,address)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(#{item.companyname},#{item.idnumber},#{item.name},#{item.sex},#{item.age},
+		#{item.department},#{item.profession},#{item.post},#{item.phone},#{item.address})
+		</foreach>
+	</insert>
+	
+	<!-- 按照工号查询 -->
+	<select id="selectByIdNumber" parameterType="java.lang.String" resultMap="com.cug.mapper.EmployerMapper.BaseResultMap">
+		select * from employer where idNumber = #{value}
+	</select>
+	
+	<!-- 按照电厂名称查询 -->
+	<select id="selectByCompanyName" parameterType="java.lang.String" resultMap="com.cug.mapper.EmployerMapper.BaseResultMap">
+		select * from employer where companyName = #{value}
+	</select>
+	
+	<!-- 按照部门查询 -->
+	<select id="selectByDepartment" parameterType="java.lang.String" resultMap="com.cug.mapper.EmployerMapper.BaseResultMap">
+		select * from employer where department = #{value}
+	</select>
+	
+	<!-- 按照专业查询 -->
+	<select id="selectByProfession" parameterType="java.lang.String" resultMap="com.cug.mapper.EmployerMapper.BaseResultMap">
+		select * from employer where profession = #{value}
+	</select>
+	
+	<!-- 按照专业模糊查询 -->
+	<select id="selectByProfessionLike" parameterType="java.lang.String" resultMap="com.cug.mapper.EmployerMapper.BaseResultMap">
+		select * from employer where profession like #{value}
+	</select>
+	
+	<!-- 根据工号删除 -->
+	<delete id="deleteByIdNumber" parameterType="java.lang.String">
+		delete from employer where idNumber = #{value}
+	</delete>
+	
+	<!-- 根据公司名删除 -->
+	<delete id="deleteByCompanyName" parameterType="java.lang.String">
+		delete from employer where companyName = #{value}
+	</delete>
+
+</mapper>

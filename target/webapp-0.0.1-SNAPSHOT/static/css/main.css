@@ -1,0 +1,79 @@
+﻿/* CSS Document */
+body {
+width:100%;
+margin:0px auto;
+font-size:12px;
+background-image: url(../images/background.jpg);
+}
+#top {
+	height: 10%;
+	width: 90%;
+	position: absolute;
+	top: -20px;
+	text-align: center;
+	left: 0px;
+	/*background-color: #c42500;*/
+	font-size: 28px;
+	/*font-weight: bold;*/
+	background: #32A3DF;
+}
+
+/*显示当前时间*/
+#topright{
+	position: absolute;
+	width: 180px;
+	height: 71px;
+	text-align: right;
+	left: 85%;
+	top:5%;
+	font-size: 12px;
+}
+/*导航*/
+#navigation{
+	width: 100%;
+	position: absolute;
+	top:12%;
+	margin-top: 0px auto;
+	text-align: center;
+	z-index: 99;
+	height: 40px;
+	left: 0px;
+	background: #56b0d2;
+}
+/*页脚*/
+#footer{
+	position: absolute;
+	left: 181px;
+	top: 95%;
+	height: 60px;
+	}
+#left_side{  
+    position:absolute;  
+    top:0px;  
+    left:0px;  
+    border:solid 0px #0000FF;  
+    width:100px;  
+    height:100%;  
+}  	
+#container{  
+    position:relative;  
+    margin:20px;  
+    height:400px;  
+}  	
+/*中间主要部分*/
+#middle{
+	position: absolute;
+	width: 90%;
+	height:70%;
+	top: 20%;
+	z-index: -1;
+	left: 0px;
+	border:solid 1px #56b0d2;
+}
+
+#middle iframe{
+	border:solid 0px #56b0d2;
+	height:100%;
+	width:100%;
+	margin:0px
+}

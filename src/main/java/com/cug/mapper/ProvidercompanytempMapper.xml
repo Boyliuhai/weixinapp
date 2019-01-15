@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cug.mapper.ProvidercompanytempMapper" >
+  <resultMap id="BaseResultMap" type="com.cug.po.Providercompanytemp" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="contractId" property="contractid" jdbcType="VARCHAR" />
+    <result column="companyName" property="companyname" jdbcType="VARCHAR" />
+    <result column="businessLicenceFilePath" property="businesslicencefilepath" jdbcType="VARCHAR" />
+    <result column="certificateFilePath" property="certificatefilepath" jdbcType="VARCHAR" />
+    <result column="ESPLFilePath" property="esplfilepath" jdbcType="VARCHAR" />
+    <result column="LOAFilePath" property="loafilepath" jdbcType="VARCHAR" />
+    <result column="securityAgreementFilePath" property="securityagreementfilepath" jdbcType="VARCHAR" />
+    <result column="ThreePlan" property="threeplan" jdbcType="VARCHAR" />
+    <result column="nowworker" property="nowworker" jdbcType="VARCHAR" />
+    <result column="allworker" property="allworker" jdbcType="VARCHAR" />
+    <result column="powerpeople" property="powerpeople" jdbcType="VARCHAR" />
+    <result column="powpeoplephone" property="powpeoplephone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, contractId, companyName, businessLicenceFilePath, certificateFilePath, ESPLFilePath, 
+    LOAFilePath, securityAgreementFilePath, ThreePlan, nowworker, allworker, powerpeople, 
+    powpeoplephone
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cug.po.ProvidercompanytempExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from providercompanytemp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from providercompanytemp
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from providercompanytemp
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cug.po.ProvidercompanytempExample" >
+    delete from providercompanytemp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cug.po.Providercompanytemp" >
+    insert into providercompanytemp (id, contractId, companyName, 
+      businessLicenceFilePath, certificateFilePath, 
+      ESPLFilePath, LOAFilePath, securityAgreementFilePath, 
+      ThreePlan, nowworker, allworker, 
+      powerpeople, powpeoplephone)
+    values (#{id,jdbcType=INTEGER}, #{contractid,jdbcType=VARCHAR}, #{companyname,jdbcType=VARCHAR}, 
+      #{businesslicencefilepath,jdbcType=VARCHAR}, #{certificatefilepath,jdbcType=VARCHAR}, 
+      #{esplfilepath,jdbcType=VARCHAR}, #{loafilepath,jdbcType=VARCHAR}, #{securityagreementfilepath,jdbcType=VARCHAR}, 
+      #{threeplan,jdbcType=VARCHAR}, #{nowworker,jdbcType=VARCHAR}, #{allworker,jdbcType=VARCHAR}, 
+      #{powerpeople,jdbcType=VARCHAR}, #{powpeoplephone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cug.po.Providercompanytemp" >
+    insert into providercompanytemp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="contractid != null" >
+        contractId,
+      </if>
+      <if test="companyname != null" >
+        companyName,
+      </if>
+      <if test="businesslicencefilepath != null" >
+        businessLicenceFilePath,
+      </if>
+      <if test="certificatefilepath != null" >
+        certificateFilePath,
+      </if>
+      <if test="esplfilepath != null" >
+        ESPLFilePath,
+      </if>
+      <if test="loafilepath != null" >
+        LOAFilePath,
+      </if>
+      <if test="securityagreementfilepath != null" >
+        securityAgreementFilePath,
+      </if>
+      <if test="threeplan != null" >
+        ThreePlan,
+      </if>
+      <if test="nowworker != null" >
+        nowworker,
+      </if>
+      <if test="allworker != null" >
+        allworker,
+      </if>
+      <if test="powerpeople != null" >
+        powerpeople,
+      </if>
+      <if test="powpeoplephone != null" >
+        powpeoplephone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="contractid != null" >
+        #{contractid,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="businesslicencefilepath != null" >
+        #{businesslicencefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatefilepath != null" >
+        #{certificatefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="esplfilepath != null" >
+        #{esplfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="loafilepath != null" >
+        #{loafilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="securityagreementfilepath != null" >
+        #{securityagreementfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="threeplan != null" >
+        #{threeplan,jdbcType=VARCHAR},
+      </if>
+      <if test="nowworker != null" >
+        #{nowworker,jdbcType=VARCHAR},
+      </if>
+      <if test="allworker != null" >
+        #{allworker,jdbcType=VARCHAR},
+      </if>
+      <if test="powerpeople != null" >
+        #{powerpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="powpeoplephone != null" >
+        #{powpeoplephone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cug.po.ProvidercompanytempExample" resultType="java.lang.Integer" >
+    select count(*) from providercompanytemp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update providercompanytemp
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.contractid != null" >
+        contractId = #{record.contractid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyname != null" >
+        companyName = #{record.companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businesslicencefilepath != null" >
+        businessLicenceFilePath = #{record.businesslicencefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certificatefilepath != null" >
+        certificateFilePath = #{record.certificatefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.esplfilepath != null" >
+        ESPLFilePath = #{record.esplfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loafilepath != null" >
+        LOAFilePath = #{record.loafilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityagreementfilepath != null" >
+        securityAgreementFilePath = #{record.securityagreementfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.threeplan != null" >
+        ThreePlan = #{record.threeplan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nowworker != null" >
+        nowworker = #{record.nowworker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allworker != null" >
+        allworker = #{record.allworker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powerpeople != null" >
+        powerpeople = #{record.powerpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powpeoplephone != null" >
+        powpeoplephone = #{record.powpeoplephone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update providercompanytemp
+    set id = #{record.id,jdbcType=INTEGER},
+      contractId = #{record.contractid,jdbcType=VARCHAR},
+      companyName = #{record.companyname,jdbcType=VARCHAR},
+      businessLicenceFilePath = #{record.businesslicencefilepath,jdbcType=VARCHAR},
+      certificateFilePath = #{record.certificatefilepath,jdbcType=VARCHAR},
+      ESPLFilePath = #{record.esplfilepath,jdbcType=VARCHAR},
+      LOAFilePath = #{record.loafilepath,jdbcType=VARCHAR},
+      securityAgreementFilePath = #{record.securityagreementfilepath,jdbcType=VARCHAR},
+      ThreePlan = #{record.threeplan,jdbcType=VARCHAR},
+      nowworker = #{record.nowworker,jdbcType=VARCHAR},
+      allworker = #{record.allworker,jdbcType=VARCHAR},
+      powerpeople = #{record.powerpeople,jdbcType=VARCHAR},
+      powpeoplephone = #{record.powpeoplephone,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cug.po.Providercompanytemp" >
+    update providercompanytemp
+    <set >
+      <if test="contractid != null" >
+        contractId = #{contractid,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        companyName = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="businesslicencefilepath != null" >
+        businessLicenceFilePath = #{businesslicencefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatefilepath != null" >
+        certificateFilePath = #{certificatefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="esplfilepath != null" >
+        ESPLFilePath = #{esplfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="loafilepath != null" >
+        LOAFilePath = #{loafilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="securityagreementfilepath != null" >
+        securityAgreementFilePath = #{securityagreementfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="threeplan != null" >
+        ThreePlan = #{threeplan,jdbcType=VARCHAR},
+      </if>
+      <if test="nowworker != null" >
+        nowworker = #{nowworker,jdbcType=VARCHAR},
+      </if>
+      <if test="allworker != null" >
+        allworker = #{allworker,jdbcType=VARCHAR},
+      </if>
+      <if test="powerpeople != null" >
+        powerpeople = #{powerpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="powpeoplephone != null" >
+        powpeoplephone = #{powpeoplephone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cug.po.Providercompanytemp" >
+    update providercompanytemp
+    set contractId = #{contractid,jdbcType=VARCHAR},
+      companyName = #{companyname,jdbcType=VARCHAR},
+      businessLicenceFilePath = #{businesslicencefilepath,jdbcType=VARCHAR},
+      certificateFilePath = #{certificatefilepath,jdbcType=VARCHAR},
+      ESPLFilePath = #{esplfilepath,jdbcType=VARCHAR},
+      LOAFilePath = #{loafilepath,jdbcType=VARCHAR},
+      securityAgreementFilePath = #{securityagreementfilepath,jdbcType=VARCHAR},
+      ThreePlan = #{threeplan,jdbcType=VARCHAR},
+      nowworker = #{nowworker,jdbcType=VARCHAR},
+      allworker = #{allworker,jdbcType=VARCHAR},
+      powerpeople = #{powerpeople,jdbcType=VARCHAR},
+      powpeoplephone = #{powpeoplephone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

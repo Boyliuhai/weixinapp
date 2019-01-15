@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cug.mapper.ProviderMapper" >
+  <resultMap id="BaseResultMap" type="com.cug.po.Provider" >
+    <id column="contractId" property="contractid" jdbcType="VARCHAR" />
+    <id column="idCard" property="idcard" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="companyName" property="companyname" jdbcType="VARCHAR" />
+    <result column="post" property="post" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    contractId, idCard, name, companyName, post, phone
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cug.po.ProviderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from provider
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.cug.po.ProviderKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from provider
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and idCard = #{idcard,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.cug.po.ProviderKey" >
+    delete from provider
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and idCard = #{idcard,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cug.po.ProviderExample" >
+    delete from provider
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cug.po.Provider" >
+    insert into provider (contractId, idCard, name, 
+      companyName, post, phone
+      )
+    values (#{contractid,jdbcType=VARCHAR}, #{idcard,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, 
+      #{companyname,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cug.po.Provider" >
+    insert into provider
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contractid != null" >
+        contractId,
+      </if>
+      <if test="idcard != null" >
+        idCard,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="companyname != null" >
+        companyName,
+      </if>
+      <if test="post != null" >
+        post,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contractid != null" >
+        #{contractid,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cug.po.ProviderExample" resultType="java.lang.Integer" >
+    select count(*) from provider
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update provider
+    <set >
+      <if test="record.contractid != null" >
+        contractId = #{record.contractid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcard != null" >
+        idCard = #{record.idcard,jdbcType=CHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyname != null" >
+        companyName = #{record.companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.post != null" >
+        post = #{record.post,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update provider
+    set contractId = #{record.contractid,jdbcType=VARCHAR},
+      idCard = #{record.idcard,jdbcType=CHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      companyName = #{record.companyname,jdbcType=VARCHAR},
+      post = #{record.post,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cug.po.Provider" >
+    update provider
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        companyName = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        post = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and idCard = #{idcard,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cug.po.Provider" >
+    update provider
+    set name = #{name,jdbcType=VARCHAR},
+      companyName = #{companyname,jdbcType=VARCHAR},
+      post = #{post,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR}
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and idCard = #{idcard,jdbcType=CHAR}
+  </update>
+</mapper>

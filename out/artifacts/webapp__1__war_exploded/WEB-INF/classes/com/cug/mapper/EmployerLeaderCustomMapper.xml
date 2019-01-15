@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cug.mapper.EmployerLeaderCustomMapper" >
+	
+	<!-- 批量插入数据 -->
+	<insert id="insertLeaders" parameterType="com.cug.po.Employerleader" >
+		insert into employerLeader(companyName,idNumber,name,sex,
+		age,post,phone,address)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(#{item.companyname},#{item.idnumber},#{item.name},#{item.sex},#{item.age},
+		 #{item.post},#{item.phone},#{item.address})
+		</foreach>
+	</insert>
+	
+	<!-- 按照工号查询 -->
+	<select id="selectByIdNumber" parameterType="java.lang.String" resultMap="com.cug.mapper.EmployerleaderMapper.BaseResultMap">
+		select * from employerLeader where idNumber = #{value}
+	</select>
+	
+	<!-- 按照电厂名称查询 -->
+	<select id="selectByCompanyName" parameterType="java.lang.String" resultMap="com.cug.mapper.EmployerleaderMapper.BaseResultMap">
+		select * from employerLeader where companyName = #{value}
+	</select>
+	
+	<!-- 根据工号删除 -->
+	<delete id="deleteByIdNumber" parameterType="java.lang.String">
+		delete from employerLeader where idNumber = #{value}
+	</delete>
+	
+	<!-- 根据公司名删除 -->
+	<delete id="deleteByCompanyName" parameterType="java.lang.String">
+		delete from employerLeader where companyName = #{value}
+	</delete>
+
+</mapper>

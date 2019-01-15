@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cug.mapper.ProjectemployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.cug.po.Projectemployee" >
+    <id column="contractId" property="contractid" jdbcType="VARCHAR" />
+    <id column="idCard" property="idcard" jdbcType="CHAR" />
+    <result column="projectName" property="projectname" jdbcType="VARCHAR" />
+    <result column="companyName" property="companyname" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="idCardFilePath" property="idcardfilepath" jdbcType="VARCHAR" />
+    <result column="faceFilePath" property="facefilepath" jdbcType="VARCHAR" />
+    <result column="examReportFilePath" property="examreportfilepath" jdbcType="VARCHAR" />
+    <result column="post" property="post" jdbcType="VARCHAR" />
+    <result column="insuranceFilePath" property="insurancefilepath" jdbcType="VARCHAR" />
+    <result column="contractLabourFilePath" property="contractlabourfilepath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    contractId, idCard, projectName, companyName, name, age, sex, address, phone, idCardFilePath, 
+    faceFilePath, examReportFilePath, post, insuranceFilePath, contractLabourFilePath
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cug.po.ProjectemployeeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from projectemployee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.cug.po.ProjectemployeeKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from projectemployee
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and idCard = #{idcard,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.cug.po.ProjectemployeeKey" >
+    delete from projectemployee
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and idCard = #{idcard,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cug.po.ProjectemployeeExample" >
+    delete from projectemployee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cug.po.Projectemployee" >
+    insert into projectemployee (contractId, idCard, projectName, 
+      companyName, name, age, 
+      sex, address, phone, 
+      idCardFilePath, faceFilePath, examReportFilePath, 
+      post, insuranceFilePath, contractLabourFilePath
+      )
+    values (#{contractid,jdbcType=VARCHAR}, #{idcard,jdbcType=CHAR}, #{projectname,jdbcType=VARCHAR}, 
+      #{companyname,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{sex,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{idcardfilepath,jdbcType=VARCHAR}, #{facefilepath,jdbcType=VARCHAR}, #{examreportfilepath,jdbcType=VARCHAR}, 
+      #{post,jdbcType=VARCHAR}, #{insurancefilepath,jdbcType=VARCHAR}, #{contractlabourfilepath,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cug.po.Projectemployee" >
+    insert into projectemployee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contractid != null" >
+        contractId,
+      </if>
+      <if test="idcard != null" >
+        idCard,
+      </if>
+      <if test="projectname != null" >
+        projectName,
+      </if>
+      <if test="companyname != null" >
+        companyName,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="idcardfilepath != null" >
+        idCardFilePath,
+      </if>
+      <if test="facefilepath != null" >
+        faceFilePath,
+      </if>
+      <if test="examreportfilepath != null" >
+        examReportFilePath,
+      </if>
+      <if test="post != null" >
+        post,
+      </if>
+      <if test="insurancefilepath != null" >
+        insuranceFilePath,
+      </if>
+      <if test="contractlabourfilepath != null" >
+        contractLabourFilePath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contractid != null" >
+        #{contractid,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=CHAR},
+      </if>
+      <if test="projectname != null" >
+        #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardfilepath != null" >
+        #{idcardfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="facefilepath != null" >
+        #{facefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="examreportfilepath != null" >
+        #{examreportfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancefilepath != null" >
+        #{insurancefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="contractlabourfilepath != null" >
+        #{contractlabourfilepath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cug.po.ProjectemployeeExample" resultType="java.lang.Integer" >
+    select count(*) from projectemployee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update projectemployee
+    <set >
+      <if test="record.contractid != null" >
+        contractId = #{record.contractid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcard != null" >
+        idCard = #{record.idcard,jdbcType=CHAR},
+      </if>
+      <if test="record.projectname != null" >
+        projectName = #{record.projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyname != null" >
+        companyName = #{record.companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null" >
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcardfilepath != null" >
+        idCardFilePath = #{record.idcardfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facefilepath != null" >
+        faceFilePath = #{record.facefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examreportfilepath != null" >
+        examReportFilePath = #{record.examreportfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.post != null" >
+        post = #{record.post,jdbcType=VARCHAR},
+      </if>
+      <if test="record.insurancefilepath != null" >
+        insuranceFilePath = #{record.insurancefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractlabourfilepath != null" >
+        contractLabourFilePath = #{record.contractlabourfilepath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update projectemployee
+    set contractId = #{record.contractid,jdbcType=VARCHAR},
+      idCard = #{record.idcard,jdbcType=CHAR},
+      projectName = #{record.projectname,jdbcType=VARCHAR},
+      companyName = #{record.companyname,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=INTEGER},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      idCardFilePath = #{record.idcardfilepath,jdbcType=VARCHAR},
+      faceFilePath = #{record.facefilepath,jdbcType=VARCHAR},
+      examReportFilePath = #{record.examreportfilepath,jdbcType=VARCHAR},
+      post = #{record.post,jdbcType=VARCHAR},
+      insuranceFilePath = #{record.insurancefilepath,jdbcType=VARCHAR},
+      contractLabourFilePath = #{record.contractlabourfilepath,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cug.po.Projectemployee" >
+    update projectemployee
+    <set >
+      <if test="projectname != null" >
+        projectName = #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        companyName = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardfilepath != null" >
+        idCardFilePath = #{idcardfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="facefilepath != null" >
+        faceFilePath = #{facefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="examreportfilepath != null" >
+        examReportFilePath = #{examreportfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        post = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancefilepath != null" >
+        insuranceFilePath = #{insurancefilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="contractlabourfilepath != null" >
+        contractLabourFilePath = #{contractlabourfilepath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and idCard = #{idcard,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cug.po.Projectemployee" >
+    update projectemployee
+    set projectName = #{projectname,jdbcType=VARCHAR},
+      companyName = #{companyname,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      idCardFilePath = #{idcardfilepath,jdbcType=VARCHAR},
+      faceFilePath = #{facefilepath,jdbcType=VARCHAR},
+      examReportFilePath = #{examreportfilepath,jdbcType=VARCHAR},
+      post = #{post,jdbcType=VARCHAR},
+      insuranceFilePath = #{insurancefilepath,jdbcType=VARCHAR},
+      contractLabourFilePath = #{contractlabourfilepath,jdbcType=VARCHAR}
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and idCard = #{idcard,jdbcType=CHAR}
+  </update>
+</mapper>

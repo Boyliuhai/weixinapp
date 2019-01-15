@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cug.mapper.EmployerGroupCustomMapper" >
+	
+	<!-- 批量插入数据 -->
+	<insert id="insertPersons" parameterType="com.cug.po.Employergroup" >
+		insert into employerGroup(companyName,idNumber,name,sex,
+		age,department,groupName,profession,post,phone,address)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(#{item.companyname},#{item.idnumber},#{item.name},#{item.sex},#{item.age},
+		 #{item.department},#{item.groupname},#{item.profession},#{item.post},#{item.phone},
+		 #{item.address})
+		</foreach>
+	</insert>
+	
+	<!-- 按照工号查询 -->
+	<select id="selectByIdNumber" parameterType="java.lang.String" resultMap="com.cug.mapper.EmployergroupMapper.BaseResultMap">
+		select * from employerGroup where idNumber = #{value}
+	</select>
+	
+	<!-- 按照电厂名称查询 -->
+	<select id="selectByCompanyName" parameterType="java.lang.String" resultMap="com.cug.mapper.EmployergroupMapper.BaseResultMap">
+		select * from employerGroup where companyName = #{value}
+	</select>
+	
+	<!-- 按照部门查询 -->
+	<select id="selectByDepartment" parameterType="java.lang.String" resultMap="com.cug.mapper.EmployergroupMapper.BaseResultMap">
+		select * from employerGroup where department = #{value}
+	</select>
+	
+	<!-- 根据班组名称查询 -->
+	<select id="selectByGroupName" parameterType="java.lang.String" resultMap="com.cug.mapper.EmployergroupMapper.BaseResultMap">
+		select * from employerGroup where groupName = #{value}
+	</select>
+	
+	<!-- 按照分部名称查询 -->
+	<select id="selectByProfession" parameterType="java.lang.String" resultMap="com.cug.mapper.EmployergroupMapper.BaseResultMap">
+		select * from employerGroup where profession = #{value}
+	</select>
+	
+	<!-- 按照分部名称模糊查询 -->
+	<select id="selectByProfessionLike" parameterType="java.lang.String" resultMap="com.cug.mapper.EmployergroupMapper.BaseResultMap">
+		select * from employerGroup where profession like #{value}
+	</select>
+	
+	<!-- 根据工号删除 -->
+	<delete id="deleteByIdNumber" parameterType="java.lang.String">
+		delete from employerGroup where idNumber = #{value}
+	</delete>
+	
+	<!-- 根据公司名删除 -->
+	<delete id="deleteByCompanyName" parameterType="java.lang.String">
+		delete from employerGroup where companyName = #{value}
+	</delete>
+
+</mapper>

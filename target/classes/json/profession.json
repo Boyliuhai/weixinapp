@@ -1,0 +1,58 @@
+{
+"page":
+[
+   {
+	"path": "/home",
+    "name": "首页",
+    "isview":false,
+    },
+   {
+        "name":"项目管理",
+        "isview":true,
+   },
+    {
+        "name":"公司管理",
+        "isview":true,
+    },
+    {
+	    "name": "作业管理",
+	    "isview":true,
+	    "path":"",
+	    },
+    {
+	    "name": "质量控制",
+	    "isview":true,
+	    "path":"",
+    },
+    {
+        "name": "工器具管理",
+        "isview":true,
+    },
+     {
+        "name": "违章管理",
+        "isview":true,
+    },
+    {
+        "path": "",
+        "name": "考勤管理",
+        "isview":true,
+    },
+    {
+        "name": "工作票管理",
+        "isview":true,
+    },
+  	 {
+  		 "path": "",
+        "name": "区域管理",
+        "isview":true,
+    },
+    {
+        "name": "组织机构管理",
+        "isview":true,
+    },
+        {
+        "name": "账号管理",
+        "isview":true,
+    }
+]
+}

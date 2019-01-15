@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cug.mapper.LoginuserinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cug.po.Loginuserinfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="passWord" property="password" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="userType" property="usertype" jdbcType="INTEGER" />
+    <result column="digitalId" property="digitalid" jdbcType="VARCHAR" />
+    <result column="userLevel" property="userlevel" jdbcType="INTEGER" />
+    <result column="accountState" property="accountstate" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, userName, passWord, name, userType, digitalId, userLevel, accountState
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cug.po.LoginuserinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from loginuserinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from loginuserinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from loginuserinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cug.po.LoginuserinfoExample" >
+    delete from loginuserinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cug.po.Loginuserinfo" >
+    insert into loginuserinfo (id, userName, passWord, 
+      name, userType, digitalId, 
+      userLevel, accountState)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{usertype,jdbcType=INTEGER}, #{digitalid,jdbcType=VARCHAR}, 
+      #{userlevel,jdbcType=INTEGER}, #{accountstate,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cug.po.Loginuserinfo" >
+    insert into loginuserinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="password != null" >
+        passWord,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="usertype != null" >
+        userType,
+      </if>
+      <if test="digitalid != null" >
+        digitalId,
+      </if>
+      <if test="userlevel != null" >
+        userLevel,
+      </if>
+      <if test="accountstate != null" >
+        accountState,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        #{usertype,jdbcType=INTEGER},
+      </if>
+      <if test="digitalid != null" >
+        #{digitalid,jdbcType=VARCHAR},
+      </if>
+      <if test="userlevel != null" >
+        #{userlevel,jdbcType=INTEGER},
+      </if>
+      <if test="accountstate != null" >
+        #{accountstate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cug.po.LoginuserinfoExample" resultType="java.lang.Integer" >
+    select count(*) from loginuserinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update loginuserinfo
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        userName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        passWord = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usertype != null" >
+        userType = #{record.usertype,jdbcType=INTEGER},
+      </if>
+      <if test="record.digitalid != null" >
+        digitalId = #{record.digitalid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userlevel != null" >
+        userLevel = #{record.userlevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.accountstate != null" >
+        accountState = #{record.accountstate,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update loginuserinfo
+    set id = #{record.id,jdbcType=INTEGER},
+      userName = #{record.username,jdbcType=VARCHAR},
+      passWord = #{record.password,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      userType = #{record.usertype,jdbcType=INTEGER},
+      digitalId = #{record.digitalid,jdbcType=VARCHAR},
+      userLevel = #{record.userlevel,jdbcType=INTEGER},
+      accountState = #{record.accountstate,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cug.po.Loginuserinfo" >
+    update loginuserinfo
+    <set >
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        passWord = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        userType = #{usertype,jdbcType=INTEGER},
+      </if>
+      <if test="digitalid != null" >
+        digitalId = #{digitalid,jdbcType=VARCHAR},
+      </if>
+      <if test="userlevel != null" >
+        userLevel = #{userlevel,jdbcType=INTEGER},
+      </if>
+      <if test="accountstate != null" >
+        accountState = #{accountstate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cug.po.Loginuserinfo" >
+    update loginuserinfo
+    set userName = #{username,jdbcType=VARCHAR},
+      passWord = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      userType = #{usertype,jdbcType=INTEGER},
+      digitalId = #{digitalid,jdbcType=VARCHAR},
+      userLevel = #{userlevel,jdbcType=INTEGER},
+      accountState = #{accountstate,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

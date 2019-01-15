@@ -1,0 +1,45 @@
+{
+"page":
+[
+   {
+	"path": "/home",
+    "name": "首页",
+    "isview":false,
+    "child":[]
+    },
+   {
+        "name":"电厂项目管理",
+        "isview":true,
+        "child":[
+            {
+                "path":"/publish",
+                "isview":true,
+                "name":"发布项目"
+            },
+            {
+                "path":"/selectproject",
+                "isview":true,
+                "name":"查看项目"
+            }
+        ]
+   },
+    {
+        "name": "组织机构管理",
+        "isview":true,
+        "child":
+        [
+            {
+                "path":"/addorg",
+                "isview":true,
+                "name":"组织结构"
+           },
+           {
+               "path":"/message",
+               "isview":true,
+               "name":"消息"
+           }
+           
+        ]
+    }
+]
+}

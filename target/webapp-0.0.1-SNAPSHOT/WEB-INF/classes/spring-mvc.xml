@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:websocket="http://www.springframework.org/schema/websocket"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+                            http://www.springframework.org/schema/context  
+                            http://www.springframework.org/schema/context/spring-context-4.0.xsd  
+                            http://www.springframework.org/schema/mvc  
+                            http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                            http://www.springframework.org/schema/websocket
+                            http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+	
+	<!-- Spring配置文件 -->
+	
+	<!-- 1.自动扫描该包，可以扫描controller、service、...-->
+    <context:component-scan base-package="com.cug.websocket,com.cug.controller,com.cug.wechat.controller" />
+    
+    <!-- 2.添加注解驱动 使用注解驱动可以代替注解映射器和注解适配器-->
+    <mvc:annotation-driven validator="validator"></mvc:annotation-driven>
+    
+    <!-- 3.内部资源视图解析器，配置了前缀和后缀后节省了很多工作，例如输入test就表示/WEB-INF/jsp/test.jsp页面  -->
+    <bean id = "jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    
+    <!-- 4.拦截器 -->
+    
+    
+    <!-- 5.文件上传解析器 -->
+    <bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 默认编码 -->
+        <property name="defaultEncoding" value="UTF-8" />
+        <!-- 文件大小最大值 -->
+        <property name="maxUploadSize" value="10485760000" />
+        <!-- 内存中的最大值 -->
+        <property name="maxInMemorySize" value="40960" />
+    </bean>
+    
+    <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
+    <bean id="mappingJacksonHttpMessageConverter"
+        class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+   <!-- 注解驱动 -->
+   <mvc:annotation-driven></mvc:annotation-driven>
+   
+   <!-- websocket配置 -->
+<!--    <bean id="messageWebSocketHandler" class="com.cug.websocket.handler.MessageWebSocketHandler"/>  
+   <bean id="handshakeInterceptor" class="com.cug.websocket.HandshakeInterceptor"></bean>
+   
+   <websocket:handlers>
+   		<websocket:mapping handler="messageWebSocketHandler" path="/websocket"/>
+   		<websocket:handshake-interceptors>
+   			<ref bean="handshakeInterceptor"/>
+   		</websocket:handshake-interceptors>
+   </websocket:handlers> -->
+
+</beans>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cug.mapper.ProviderCustomMapper" >
+	
+	<!-- 根据合同id查找承包商管理人员 -->
+	<select id="selectByContractId"  parameterType="java.lang.String" resultType="com.cug.po.Provider" >
+	  select * from provider where contractId = #{contractId}
+	</select>
+	
+	<!-- 根据合同编号删除 -->
+	<delete id="deleteByContractId" parameterType="java.lang.String">
+		delete from provider where contractId = #{value}
+	</delete>
+
+</mapper>

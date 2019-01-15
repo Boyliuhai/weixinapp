@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cug.mapper.ProjectplanMapper" >
+  <resultMap id="BaseResultMap" type="com.cug.po.Projectplan" >
+    <id column="contractId" property="contractid" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="stageOrder" property="stageorder" jdbcType="VARCHAR" />
+    <result column="stageName" property="stagename" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="planTime" property="plantime" jdbcType="INTEGER" />
+    <result column="startTime" property="starttime" jdbcType="VARCHAR" />
+    <result column="endTime" property="endtime" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="REAL" />
+    <result column="ratio" property="ratio" jdbcType="REAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    contractId, id, stageOrder, stageName, content, planTime, startTime, endTime, amount, 
+    ratio, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cug.po.ProjectplanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from projectplan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.cug.po.ProjectplanKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from projectplan
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.cug.po.ProjectplanKey" >
+    delete from projectplan
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cug.po.ProjectplanExample" >
+    delete from projectplan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cug.po.Projectplan" >
+    insert into projectplan (contractId, id, stageOrder, 
+      stageName, content, planTime, 
+      startTime, endTime, amount, 
+      ratio, remark)
+    values (#{contractid,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{stageorder,jdbcType=VARCHAR}, 
+      #{stagename,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{plantime,jdbcType=INTEGER}, 
+      #{starttime,jdbcType=VARCHAR}, #{endtime,jdbcType=VARCHAR}, #{amount,jdbcType=REAL}, 
+      #{ratio,jdbcType=REAL}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cug.po.Projectplan" >
+    insert into projectplan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contractid != null" >
+        contractId,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stageorder != null" >
+        stageOrder,
+      </if>
+      <if test="stagename != null" >
+        stageName,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="plantime != null" >
+        planTime,
+      </if>
+      <if test="starttime != null" >
+        startTime,
+      </if>
+      <if test="endtime != null" >
+        endTime,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="ratio != null" >
+        ratio,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contractid != null" >
+        #{contractid,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="stageorder != null" >
+        #{stageorder,jdbcType=VARCHAR},
+      </if>
+      <if test="stagename != null" >
+        #{stagename,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="plantime != null" >
+        #{plantime,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=REAL},
+      </if>
+      <if test="ratio != null" >
+        #{ratio,jdbcType=REAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cug.po.ProjectplanExample" resultType="java.lang.Integer" >
+    select count(*) from projectplan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update projectplan
+    <set >
+      <if test="record.contractid != null" >
+        contractId = #{record.contractid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.stageorder != null" >
+        stageOrder = #{record.stageorder,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stagename != null" >
+        stageName = #{record.stagename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantime != null" >
+        planTime = #{record.plantime,jdbcType=INTEGER},
+      </if>
+      <if test="record.starttime != null" >
+        startTime = #{record.starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endtime != null" >
+        endTime = #{record.endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=REAL},
+      </if>
+      <if test="record.ratio != null" >
+        ratio = #{record.ratio,jdbcType=REAL},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update projectplan
+    set contractId = #{record.contractid,jdbcType=VARCHAR},
+      id = #{record.id,jdbcType=INTEGER},
+      stageOrder = #{record.stageorder,jdbcType=VARCHAR},
+      stageName = #{record.stagename,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      planTime = #{record.plantime,jdbcType=INTEGER},
+      startTime = #{record.starttime,jdbcType=VARCHAR},
+      endTime = #{record.endtime,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=REAL},
+      ratio = #{record.ratio,jdbcType=REAL},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cug.po.Projectplan" >
+    update projectplan
+    <set >
+      <if test="stageorder != null" >
+        stageOrder = #{stageorder,jdbcType=VARCHAR},
+      </if>
+      <if test="stagename != null" >
+        stageName = #{stagename,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="plantime != null" >
+        planTime = #{plantime,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        startTime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        endTime = #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=REAL},
+      </if>
+      <if test="ratio != null" >
+        ratio = #{ratio,jdbcType=REAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cug.po.Projectplan" >
+    update projectplan
+    set stageOrder = #{stageorder,jdbcType=VARCHAR},
+      stageName = #{stagename,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      planTime = #{plantime,jdbcType=INTEGER},
+      startTime = #{starttime,jdbcType=VARCHAR},
+      endTime = #{endtime,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=REAL},
+      ratio = #{ratio,jdbcType=REAL},
+      remark = #{remark,jdbcType=VARCHAR}
+    where contractId = #{contractid,jdbcType=VARCHAR}
+      and id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

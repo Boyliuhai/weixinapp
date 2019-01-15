@@ -1,0 +1,66 @@
+{
+"page":
+[
+   {
+	"path": "/home",
+    "name": "首页",
+   		 "isview":false,
+    },
+  
+   {
+   		"path": "/SelectProject",
+        "name":"项目管理",
+        "isview":true,
+   },
+    {
+    	"path": "/job",
+	    "name": "作业管理",
+	    "isview":true,
+	 },
+    {
+    "path": "/quality",
+	    "name": "质量控制",
+	    "isview":true,
+    },
+    {
+    "path": "/instrument",
+        "name": "工器具管理",
+        "isview":true,
+    },
+     {
+     "path": "/selectbreak",
+        "name": "违章管理",
+        "isview":true,
+    },
+    {
+    "path": "/wuzichaxun",
+        "name": "物资管理",
+        "isview":true,
+    },
+  	 {
+  		 "path": "/zhanbanhui",
+        "name": "站班会",
+        "isview":true,
+    },
+     {
+  		 "path": "/wu",
+        "name": "敬请期待",
+        "isview":false,
+    },
+     {
+  		 "path": "/wu",
+        "name": "敬请期待",
+        "isview":false,
+    },
+     {
+  		 "path": "/wu",
+        "name": "敬请期待",
+        "isview":false,
+    },
+     {
+   		"path": "/CheckProject",
+        "name":"项目管理",
+        "isview":true,
+   },
+]
+}
